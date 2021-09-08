@@ -1,22 +1,29 @@
 # README
 
 install commands 
-
+   $rails db:create
+   $rails generate rspec:install
+   $rails new pepwalk_app -d postgresql -T
    $bundle add devise
    $rails generate devise:install\n
    $rails generate devise User
    $rails db:migrate
    $rails s
+
+   tailwind commands
    $yarn add -D tailwindcss@npm:@tailwindcss/postcss7-compat
    $yarn add postcss@7.0
    $yarn add autoprefixer@9.0
-   $code .
+   $yarn add @craco/craco
+
    $bundle add react-rails
    $rails webpacker:install
    $rails webpacker:install:react
    $rails generate react:install
    $rails generate react:component App
    $rails generate controller Home
+
+
 
 
 app/views/home/index.html.erb

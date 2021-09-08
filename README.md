@@ -12,6 +12,7 @@ install commands
 
    tailwind commands
    $yarn add -D tailwindcss@npm:@tailwindcss/postcss7-compat
+   $npx tailwindcss init
    $yarn add postcss@7.0
    $yarn add autoprefixer@9.0
    $yarn add @craco/craco

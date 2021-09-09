@@ -1,0 +1,2 @@
+module FavoriteWorkoutsHelper
+end

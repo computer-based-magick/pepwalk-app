@@ -17,9 +17,10 @@ const getRandomWorkout = (workouts) => {
 
 function App(props) {
   const [workout, setWorkout] = useState({})
+  const [logs, setLogs] = useState([])
 
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -51,6 +52,17 @@ function App(props) {
       .catch(errors => console.log(errors))
   }, [])
 
+  useEffect(() => {
+    fetch('/fitness_logs')
+      .then(response => response.json())
+      .then(logs => {
+        console.log(logs)
+        setLogs(logs)
+      })
+      .catch(errors => console.log(errors))
+  }, [])
+
+
   return (
     <>
       <Router>
@@ -62,7 +74,7 @@ function App(props) {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/logs" component={Logs} />
+          <Route path="/logs" component={() => <Logs logs={logs} />} />
           <Route path="/addlog" component={AddLog} />
           <Route path="/contact" component={Contact} />
           <Route path="/workout" component={() => <WorkOut workout={workout} setWorkout={setWorkout}/>} />

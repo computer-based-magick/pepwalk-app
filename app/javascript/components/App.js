@@ -10,6 +10,7 @@ import { AddLog } from "./pages/AddLog";
 import { Contact } from "./pages/Contact";
 import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
+import { LogShow } from "./pages/LogShow";
 
 const getRandomWorkout = (workouts) => {
   return workouts[0]
@@ -77,6 +78,7 @@ function App(props) {
           <Route path="/logs" component={() => <Logs logs={logs} />} />
           <Route path="/addlog" component={AddLog} />
           <Route path="/contact" component={Contact} />
+          <Route path="/logshow" component={LogShow} />
           <Route path="/workout" component={() => <WorkOut workout={workout} setWorkout={setWorkout}/>} />
           <Route component={NotFound} />
         </Switch>

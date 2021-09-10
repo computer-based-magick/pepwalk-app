@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const WorkOut = () => {
-
-  const [workouts, setWorkouts] = useState([])
-
-  const [refresh, setRefresh] = useState(0)
-
-  useEffect(() => {
-    fetch(`https://wger.de/api/v2/exercise/?language=2&limit=10`)
-      .then(response => response.json())
-      .then(workouts => console.log(workouts))
-      .catch(errors => console.log(errors))
-  })
+const WorkOut = ({ workout, setWorkout}) => {
 
   return (
     <>
@@ -31,7 +20,7 @@ const WorkOut = () => {
             <div className="w-72 h-40 bg-black transform transition-all skew-x-12 -skew-y-12 absolute -top-12 -left-12 rounded-lg"></div>
             <div className="w-72 h-40 bg-purple-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-16 -left-16 rounded-lg"></div>
             <div className="w-72 h-40 bg-white flex justify-center items-center border-2 border-black transform transition-all skew-x-12 -skew-y-12 absolute -top-20 -left-20 rounded-lg">
-              <h1 className="uppercase font-black">500 air squats</h1>
+              <h1 className="uppercase font-black">{!!workout && workout.name}</h1>
             </div>
           </div>
         </div>

@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const WorkOut = () => {
+
+  const [workouts, setWorkouts] = useState([])
+
+  const [refresh, setRefresh] = useState(0)
+
+  useEffect(() => {
+    fetch(`https://wger.de/api/v2/exercise/?language=2&limit=10`)
+      .then(response => response.json())
+      .then(workouts => console.log(workouts))
+      .catch(errors => console.log(errors))
+  })
+
   return (
     <>
       <div className="flex justify-center items-center bg-yellow-300">
@@ -10,15 +22,15 @@ const WorkOut = () => {
         <br />
         <br />
       </div>
-      <div class="bg-yellow-300">
-        <div class="flex flex-col justify-center items-center min-h-screen min-w-full">
-          <div class="flex relative">
-            <div class="w-72 h-40 bg-green-400 transform transition-all skew-x-12 -skew-y-12 absolute rounded-lg"></div>
-            <div class="w-72 h-40 bg-yellow-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-4 -left-4 rounded-lg"></div>
-            <div class="w-72 h-40 bg-red-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-8 -left-8 rounded-lg"></div>
-            <div class="w-72 h-40 bg-black transform transition-all skew-x-12 -skew-y-12 absolute -top-12 -left-12 rounded-lg"></div>
-            <div class="w-72 h-40 bg-purple-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-16 -left-16 rounded-lg"></div>
-            <div class="w-72 h-40 bg-white flex justify-center items-center border-2 border-black transform transition-all skew-x-12 -skew-y-12 absolute -top-20 -left-20 rounded-lg">
+      <div className="bg-yellow-300">
+        <div className="flex flex-col justify-center items-center min-h-screen min-w-full">
+          <div className="flex relative">
+            <div className="w-72 h-40 bg-green-400 transform transition-all skew-x-12 -skew-y-12 absolute rounded-lg"></div>
+            <div className="w-72 h-40 bg-yellow-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-4 -left-4 rounded-lg"></div>
+            <div className="w-72 h-40 bg-red-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-8 -left-8 rounded-lg"></div>
+            <div className="w-72 h-40 bg-black transform transition-all skew-x-12 -skew-y-12 absolute -top-12 -left-12 rounded-lg"></div>
+            <div className="w-72 h-40 bg-purple-400 transform transition-all skew-x-12 -skew-y-12 absolute -top-16 -left-16 rounded-lg"></div>
+            <div className="w-72 h-40 bg-white flex justify-center items-center border-2 border-black transform transition-all skew-x-12 -skew-y-12 absolute -top-20 -left-20 rounded-lg">
               <h1 className="uppercase font-black">500 air squats</h1>
             </div>
           </div>

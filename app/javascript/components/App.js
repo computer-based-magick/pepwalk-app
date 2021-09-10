@@ -9,10 +9,11 @@ import DropDown from "./components/DropDown";
 import { AddLog } from "./pages/AddLog";
 import { Contact } from "./pages/Contact";
 import WorkOut from "./pages/Workout";
+import NotFound from "./pages/NotFound";
 
-function App() {
+function App(props) {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -35,7 +36,10 @@ function App() {
   return (
     <>
       <Router>
-        <NavBar toggle={toggle} />
+        <NavBar toggle={toggle}
+                sign_in_route={props.sign_in_route}
+                sign_out_route={props.sign_out_route}
+                logged_in={props.logged_in}/>
         <DropDown isOpen={isOpen} toggle={toggle} />
         <Switch>
           <Route path="/" exact component={Home} />
@@ -44,6 +48,7 @@ function App() {
           <Route path="/addlog" component={AddLog} />
           <Route path="/contact" component={Contact} />
           <Route path="/workout" component={WorkOut} />
+          <Route component={NotFound} />
         </Switch>
         <Footer />
       </Router>

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ toggle }) => {
+const NavBar = (props, { toggle }) => {
+  console.log(props)
   return (
     <nav className="flex  justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono">
       <Link to="/" className="pl-8">
@@ -53,9 +54,16 @@ const NavBar = ({ toggle }) => {
         <Link className="p-4" to="/addlog">
           Add a Log
         </Link>
-        <Link className="p-4" to="http://localhost:3000/users/sign_in">
-          Login
-        </Link>
+        {props.logged_in && 
+          <Link className="p-4" to={props.sign_out_route}>
+            Logout
+          </Link>
+        }
+        {!props.logged_in && 
+          <Link className="p-4" to={props.sign_in_route}>
+            Login
+          </Link>
+        }
       </div>
     </nav>
   );

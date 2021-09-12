@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Logs = ({ logs }) => {
   console.log(logs);
@@ -20,14 +21,16 @@ const Logs = ({ logs }) => {
             <p className="py-6 px-6 text-lg tracking-wide text-center">
               {log.entry}
             </p>
-            <div className="flex justify-center px-5 mb-2 text-sm ">
-              <button
-                type="button"
-                className="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
-              >
-                More Info
-              </button>
-            </div>
+            <Link to={`log/${log.id}`}>
+              <div className="flex justify-center px-5 mb-2 text-sm ">
+                <button
+                  type="button"
+                  className="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
+                >
+                  More Info
+                </button>
+              </div>
+            </Link>
           </div>
         </div>
       );

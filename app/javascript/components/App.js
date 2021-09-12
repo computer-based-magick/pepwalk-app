@@ -13,13 +13,13 @@ import NotFound from "./pages/NotFound";
 import { LogShow } from "./pages/LogShow";
 
 const getRandomWorkout = (workouts) => {
-  return workouts[0]
-}
+  return workouts[0];
+};
 
 function App(props) {
-  const [workout, setWorkout] = useState({})
-  const [logs, setLogs] = useState([])
-
+  const [workout, setWorkout] = useState({});
+  const [logs, setLogs] = useState([]);
+  const [refresh, setRefresh] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -41,45 +41,56 @@ function App(props) {
     };
   });
 
-  const [refresh, setRefresh] = useState(0)
-
   useEffect(() => {
     fetch(`https://wger.de/api/v2/exercise/?language=2&limit=10`)
-      .then(response => response.json())
-      .then(workouts => {
-        console.log(workouts)
-        setWorkout(getRandomWorkout(workouts.results))
+      .then((response) => response.json())
+      .then((workouts) => {
+        console.log(workouts);
+        setWorkout(getRandomWorkout(workouts.results));
       })
-      .catch(errors => console.log(errors))
-  }, [])
+      .catch((errors) => console.log(errors));
+  }, []);
 
   useEffect(() => {
-    fetch('/fitness_logs')
-      .then(response => response.json())
-      .then(logs => {
-        console.log(logs)
-        setLogs(logs)
+    fetch("/fitness_logs")
+      .then((response) => response.json())
+      .then((logs) => {
+        console.log(logs);
+        setLogs(logs);
       })
-      .catch(errors => console.log(errors))
-  }, [])
-
+      .catch((errors) => console.log(errors));
+  }, []);
 
   return (
     <>
       <Router>
-        <NavBar toggle={toggle}
-                sign_in_route={props.sign_in_route}
-                sign_out_route={props.sign_out_route}
-                logged_in={props.logged_in}/>
+        <NavBar
+          sign_in_route={props.sign_in_route}
+          sign_out_route={props.sign_out_route}
+          logged_in={props.logged_in}
+          toggle={toggle}
+        />
         <DropDown isOpen={isOpen} toggle={toggle} />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
           <Route path="/logs" component={() => <Logs logs={logs} />} />
+          <Route
+            path="/log/:id"
+            render={(props) => {
+              let id = props.match.params.id;
+              let log = logs.find((log) => log.id === +id);
+              return <LogShow log={log} />;
+            }}
+          />
           <Route path="/addlog" component={AddLog} />
           <Route path="/contact" component={Contact} />
-          <Route path="/logshow" component={LogShow} />
-          <Route path="/workout" component={() => <WorkOut workout={workout} setWorkout={setWorkout}/>} />
+          <Route
+            path="/workout"
+            component={() => (
+              <WorkOut workout={workout} setWorkout={setWorkout} />
+            )}
+          />
           <Route component={NotFound} />
         </Switch>
         <Footer />

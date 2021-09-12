@@ -1,25 +1,35 @@
 import React from "react";
+import { useParams } from "react-router";
 
-export const LogShow = () => {
+export const LogShow = ({ log }) => {
+  console.log("LOG!!!", log);
   return (
     <div className=" bg-yellow-500 flex flex-col h-screen md:flex-row justify-center  flex-wrap gap-3 mt-0  py-4">
-      <div className="bg-white max-w-xs shadow-lg   mx-auto border-b-4 border-indigo-500 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
+      <div className="bg-white w-96 shadow-lg   mx-auto border-b-4 border-indigo-500 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
         <div className="bg-indigo-500  flex h-20  items-center">
           <h1 className="text-white ml-4 border-2 py-2 px-4 rounded-full">
-            log.id
+            {log && log.id}
           </h1>
-          <p className="ml-4 text-white uppercase">log.date</p>
+          <p className="ml-4 text-white uppercase">{log && log.date}</p>
         </div>
         <p className="py-6 px-6 text-lg tracking-wide text-center">
-          log.workout_name
+          {log && log.workout_name}
         </p>
         <p className="py-6 px-6 text-lg tracking-wide text-center">
-          log.mood sad lethargic energetic sad
+          Happy Level {log && log.happy}
         </p>
         <p className="py-6 px-6 text-lg tracking-wide text-center">
-          overall mood rating?
+          Sad Level {log && log.sad}
         </p>
-        <p className="py-6 px-6 text-lg tracking-wide text-center">log.entry</p>
+        <p className="py-6 px-6 text-lg tracking-wide text-center">
+          Energetic Rating {log && log.energetic}
+        </p>
+        <p className="py-6 px-6 text-lg tracking-wide text-center">
+          Lethargic Rating {log && log.lethargic}
+        </p>
+        <p className="py-6 px-6 text-lg tracking-wide text-center">
+          Overall Rating {log && log.entry}
+        </p>
         <div className="flex justify-center px-5 mb-2 text-sm ">
           <button
             type="button"

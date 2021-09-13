@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Logs = ({ logs }) => {
-  console.log(logs);
   return (
     logs &&
     logs.map((log) => {

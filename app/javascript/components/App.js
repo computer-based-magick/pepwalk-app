@@ -61,8 +61,9 @@ function App(props) {
       })
       .catch((errors) => console.log(errors));
   }, []);
-
+  console.log(props.logged_in)
   return (
+    
     <>
       <Router>
         <NavBar
@@ -73,7 +74,7 @@ function App(props) {
         />
         <DropDown isOpen={isOpen} toggle={toggle} />
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={() => <Home loggedIn={props.logged_in}/>} />
           <Route path="/about" component={About} />
           <Route path="/logs" component={() => <Logs logs={logs} />} />
           <Route

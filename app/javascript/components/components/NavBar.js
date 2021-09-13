@@ -55,14 +55,14 @@ const NavBar = (props, { toggle }) => {
           Add a Log
         </Link>
         {props.logged_in && 
-          <Link className="p-4" to={props.sign_out_route}>
+          <a className="p-4" href={props.sign_out_route}>
             Logout
-          </Link>
+          </a>
         }
         {!props.logged_in && 
-          <Link className="p-4" to={props.sign_in_route}>
-            Login
-          </Link>
+          <a className="p-4" href={props.sign_in_route}>
+          Login
+          </a>
         }
       </div>
     </nav>

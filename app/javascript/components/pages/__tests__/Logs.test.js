@@ -15,7 +15,8 @@ describe("When Logs page renders", () => {
           sad: 5,
           energetic: 7,
           lethargic: 2,
-          entry: 'crushed it!'
+          entry: 'crushed it!',
+          id: 1
       }
   ]
   it("displays an h1 tag", () => {
@@ -35,4 +36,10 @@ describe("When Logs page renders", () => {
     const renderText = renderlogs.find("button");
     expect(renderText.text()).toEqual("More Info");
   });
+
+  it("has a Link element that links to the log show page", () => {
+    const renderlogs = shallow(<Logs logs={logs}/>);
+    const renderLink = renderlogs.find("Link");
+    expect(renderLink.props().to).toEqual(`log/${logs[0].id}`)
+  })
 });

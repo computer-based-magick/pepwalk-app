@@ -13,9 +13,9 @@ import NotFound from "./pages/NotFound";
 import { LogShow } from "./pages/LogShow";
 
 const getRandomWorkout = (workouts) => {
-  const randNum = Math.floor(Math.random() * workouts.length - 1)
-  return workouts[randNum]
-}
+  const randNum = Math.floor(Math.random() * workouts.length - 1);
+  return workouts[randNum];
+};
 
 function App(props) {
   const [workout, setWorkout] = useState({});
@@ -44,9 +44,9 @@ function App(props) {
 
   useEffect(() => {
     fetch(`https://wger.de/api/v2/exercise/?language=2&limit=20`)
-      .then(response => response.json())
-      .then(workouts => {
-        setWorkout(getRandomWorkout(workouts.results))
+      .then((response) => response.json())
+      .then((workouts) => {
+        setWorkout(getRandomWorkout(workouts.results));
       })
       .catch((errors) => console.log(errors));
   }, []);
@@ -57,24 +57,29 @@ function App(props) {
       .then((logs) => {
         console.log(logs);
         setLogs(logs);
-
       })
       .catch((errors) => console.log(errors));
   }, []);
 
   return (
-    
     <>
       <Router>
         <NavBar
           sign_in_route={props.sign_in_route}
           sign_out_route={props.sign_out_route}
           logged_in={props.logged_in}
+          current_user={props.current_user}
           toggle={toggle}
         />
         <DropDown isOpen={isOpen} toggle={toggle} />
         <Switch>
-          <Route path="/" exact component={() => <Home loggedIn={props.logged_in}/>} />
+          <Route
+            path="/"
+            exact
+            component={() => (
+              <Home signUp={props.new_user_route} loggedIn={props.logged_in} />
+            )}
+          />
           <Route path="/about" component={About} />
           <Route path="/logs" component={() => <Logs logs={logs} />} />
           <Route

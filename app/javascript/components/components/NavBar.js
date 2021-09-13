@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavBar = (props) => {
   console.log(props);
   return (
-    <nav className="flex  justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono">
+    <nav className="flex  justify-between items-center h-18 bg-white text-black relative shadow-sm font-mono">
       <Link to="/" className="pl-8">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +39,9 @@ const NavBar = (props) => {
         </svg>
       </div>
       <div className="pr-8 md:block hidden">
+        <h3 className="p-4 flex justify-end">
+          {props.logged_in && props.current_user.email}
+        </h3>
         <Link className="p-4" to="/">
           Home
         </Link>

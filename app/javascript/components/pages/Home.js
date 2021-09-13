@@ -1,18 +1,12 @@
 import React from "react";
 import Hero from "../components/Hero";
+import NotLoggedIn from "./NotLoggedIn";
 
-const Home = ({loggedIn}) => {
+const Home = (props) => {
   return (
     <>
-    {loggedIn &&
-      <Hero />
-    }
-    {!loggedIn &&
-      <>
-      <h1>Log in first</h1>
-      <p>text</p>
-      </>
-    }
+      {props && props.loggedIn && <Hero />}
+      {props && !props.loggedIn && <NotLoggedIn signUp={props.signup} />}
     </>
   );
 };

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
-  console.log(props);
   return (
     <nav className="flex  justify-between items-center h-18 bg-white text-black relative shadow-sm font-mono">
       <Link to="/" className="pl-8">

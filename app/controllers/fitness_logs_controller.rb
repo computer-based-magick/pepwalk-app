@@ -16,6 +16,6 @@ class FitnessLogsController < ApplicationController
 
   private
     def log_params
-      params.require(:fitnesslog).permit(:date, :workout_name, :happy, :sad, :energetic, :email, :lethargic, :entry)
+      params.require(:fitnesslog).permit(:date, :workout_name, :happy, :sad, :energetic, :email, :lethargic, :entry, :user_id)
     end
 end

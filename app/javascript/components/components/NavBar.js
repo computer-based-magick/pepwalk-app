@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = (props, { toggle }) => {
-  console.log(props)
+const NavBar = (props) => {
+  console.log(props);
   return (
     <nav className="flex  justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono">
       <Link to="/" className="pl-8">
@@ -22,7 +22,7 @@ const NavBar = (props, { toggle }) => {
         </svg>{" "}
         <h3 className="flex flex-col ">PepWalk</h3>
       </Link>
-      <div className="px-4 cursor-pointer md:hidden" onClick={toggle}>
+      <div className="px-4 cursor-pointer md:hidden" onClick={props.toggle}>
         <svg
           className="w-6 h-6"
           fill="none"
@@ -54,16 +54,16 @@ const NavBar = (props, { toggle }) => {
         <Link className="p-4" to="/addlog">
           Add a Log
         </Link>
-        {props.logged_in && 
+        {props.logged_in && (
           <a className="p-4" href={props.sign_out_route}>
             Logout
           </a>
-        }
-        {!props.logged_in && 
+        )}
+        {!props.logged_in && (
           <a className="p-4" href={props.sign_in_route}>
-          Login
+            Login
           </a>
-        }
+        )}
       </div>
     </nav>
   );

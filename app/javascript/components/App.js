@@ -61,7 +61,7 @@ function App(props) {
       })
       .catch((errors) => console.log(errors));
   }, []);
-  console.log(props.logged_in)
+
   return (
     
     <>

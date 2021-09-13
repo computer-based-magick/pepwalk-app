@@ -12,7 +12,8 @@ import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
 
 const getRandomWorkout = (workouts) => {
-  return workouts[0]
+  const randNum = Math.floor(Math.random() * workouts.length - 1)
+  return workouts[randNum]
 }
 
 function App(props) {
@@ -42,10 +43,9 @@ function App(props) {
   const [refresh, setRefresh] = useState(0)
 
   useEffect(() => {
-    fetch(`https://wger.de/api/v2/exercise/?language=2&limit=10`)
+    fetch(`https://wger.de/api/v2/exercise/?language=2&limit=20`)
       .then(response => response.json())
       .then(workouts => {
-        console.log(workouts)
         setWorkout(getRandomWorkout(workouts.results))
       })
       .catch(errors => console.log(errors))

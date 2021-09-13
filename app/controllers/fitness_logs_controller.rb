@@ -8,7 +8,7 @@ class FitnessLogsController < ApplicationController
   def create
     fitnesslog = FitnessLog.create(log_params)
     if fitnesslog.valid?
-      render json:fitnesslog
+      render json: fitnesslog
     else
       render json: fitnesslog.errors, status: 422
     end
@@ -16,6 +16,6 @@ class FitnessLogsController < ApplicationController
 
   private
     def log_params
-      params.require(:fitnesslog).permit(:date, :workout_name, :happy, :sad, :energetic, :email, :lethargic, :entry, :user_id)
+      params.require(:fitnesslog).permit(:date, :workout_name, :workout_id, :happy, :sad, :energetic, :email, :lethargic, :entry, :user_id)
     end
 end

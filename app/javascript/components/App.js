@@ -13,8 +13,9 @@ import NotFound from "./pages/NotFound";
 import { LogShow } from "./pages/LogShow";
 
 const getRandomWorkout = (workouts) => {
-  return workouts[0];
-};
+  const randNum = Math.floor(Math.random() * workouts.length - 1)
+  return workouts[randNum]
+}
 
 function App(props) {
   const [workout, setWorkout] = useState({});
@@ -42,11 +43,10 @@ function App(props) {
   });
 
   useEffect(() => {
-    fetch(`https://wger.de/api/v2/exercise/?language=2&limit=10`)
-      .then((response) => response.json())
-      .then((workouts) => {
-        console.log(workouts);
-        setWorkout(getRandomWorkout(workouts.results));
+    fetch(`https://wger.de/api/v2/exercise/?language=2&limit=20`)
+      .then(response => response.json())
+      .then(workouts => {
+        setWorkout(getRandomWorkout(workouts.results))
       })
       .catch((errors) => console.log(errors));
   }, []);
@@ -57,6 +57,7 @@ function App(props) {
       .then((logs) => {
         console.log(logs);
         setLogs(logs);
+
       })
       .catch((errors) => console.log(errors));
   }, []);

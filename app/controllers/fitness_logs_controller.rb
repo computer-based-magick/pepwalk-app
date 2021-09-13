@@ -5,7 +5,4 @@ class FitnessLogsController < ApplicationController
     render json: fitnesslogs
   end
 
-  def
-  end
-
 end

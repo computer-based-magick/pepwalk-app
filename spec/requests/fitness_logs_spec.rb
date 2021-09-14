@@ -39,6 +39,7 @@ RSpec.describe "FitnessLogs", type: :request do
 
   describe "POST /create" do
     it 'creates an fitness log' do
+      
       fitness_log_params = {
         fitness_log: {
           date: '2021-09-10T22:09:16.408Z',

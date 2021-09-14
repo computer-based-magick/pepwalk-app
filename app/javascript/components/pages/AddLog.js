@@ -1,82 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export const AddLog = ({workout, currentUserId, createLog}) => {
+export const AddLog = ({ workout, currentUserId, createLog }) => {
   let history = useHistory();
   const redirect = () => {
     history.push("/logs");
   };
 
-  const [log, setLog] = useState({})
+  const [log, setLog] = useState({});
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(workout)
-    console.log(currentUserId)
-    createLog({...log, workout: workout, user_id: currentUserId})
-    redirect()
-  }
-  
-  const handleChange = (e) => {
-    setLog({...log, [e.target.name]: e.target.value})
-    console.log(e.target.name)
-    console.log(e.target.value)
-  }
+    e.preventDefault();
+    console.log(workout);
+    console.log(currentUserId);
+    createLog({ ...log, workout_id: -1, user_id: currentUserId });
+    redirect();
+  };
 
-  console.log(log)
+  const handleChange = (e) => {
+    setLog({ ...log, [e.target.name]: e.target.value });
+    console.log(e.target.name);
+    console.log(e.target.value);
+  };
+
+  console.log(log);
 
   return (
     <div className=" bg-red-500  py-6 flex flex-col justify-center sm:py-12">
       <div className="flex-auto py-3 w-11/12  sm:mx-auto">
         <div className="relative p-8 bg-white shadow-sm sm:rounded-xl">
           <form className="w-full">
-           
-            <div className="mb-5 relative">
+            <div className="mb-5 relative" onChange={handleChange}>
               <input
                 type="date"
-                id="date"
-                className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent"
-                placeholder="password"
-                autocomplete="off"
+                name="date"
+                className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 "
               />
-              <label
-                for="password"
-                className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
-              >
+              <label className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out">
                 Date
               </label>
             </div>
 
-            <div className="mb-5 relative">
-              <input
-                type="email"
-                id="email"
-                className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent"
-                placeholder="name@example.com"
-                autocomplete="off"
-              />
-              <label
-                for="email"
-                className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out "
-              >
-                What exercise have you done today if any?
-              </label>
-            </div>
-
             <div className="flex mb-5 relative " onChange={handleChange}>
-              <div className=" my-auto px-3  ">
-                Are you sad?
-              </div>
+              <div className=" my-auto px-3  ">Are you sad?</div>
 
               <label className="flex radio p-5 cursor-pointer">
-                <div className="title px-2">
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
                   name="sad"
                   value={1}
                 />
-                1</div>
+                <div className="title px-2">1</div>
               </label>
 
               <label className="flex radio p-5 cursor-pointer">
@@ -119,9 +94,7 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
             </div>
 
             <div className="flex mb-5 relative " onChange={handleChange}>
-              <div className=" my-auto px-3  ">
-                Are you happy?
-              </div>
+              <div className=" my-auto px-3  ">Are you happy?</div>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
@@ -148,6 +121,7 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
+                  value={3}
                 />
                 <div className="title px-2">3</div>
               </label>
@@ -156,6 +130,7 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
+                  value={4}
                 />
                 <div className="title px-2">4</div>
               </label>
@@ -164,21 +139,21 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
+                  value={5}
                 />
                 <div className="title px-2">5</div>
               </label>
             </div>
 
-            <div className="flex mb-5 relative ">
-              <div className="my-auto px-3  ">
-                Do you feel energetic?
-              </div>
+            <div className="flex mb-5 relative " onChange={handleChange}>
+              <div className="my-auto px-3  ">Do you feel energetic?</div>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group3"
+                  name="energetic"
+                  value={1}
                 />
                 <div className="title px-2">1</div>
               </label>
@@ -187,7 +162,8 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group3"
+                  name="energetic"
+                  value={2}
                 />
                 <div className="title px-2">2</div>
               </label>
@@ -196,7 +172,8 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group3"
+                  name="energetic"
+                  value={3}
                 />
                 <div className="title px-2">3</div>
               </label>
@@ -204,7 +181,8 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group3"
+                  name="energetic"
+                  value={4}
                 />
                 <div className="title px-2">4</div>
               </label>
@@ -212,22 +190,22 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group3"
+                  name="energetic"
+                  value={5}
                 />
                 <div className="title px-2">5</div>
               </label>
             </div>
 
-            <div className="flex mb-5 relative ">
-              <div className="my-auto px-3  ">
-                How did you sleep?
-              </div>
+            <div className="flex mb-5 relative " onChange={handleChange}>
+              <div className="my-auto px-3  ">Do you feel lethargic?</div>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group4"
+                  name="lethargic"
+                  value={1}
                 />
                 <div className="title px-2">1</div>
               </label>
@@ -236,7 +214,8 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group4"
+                  name="lethargic"
+                  value={2}
                 />
                 <div className="title px-2">2</div>
               </label>
@@ -245,7 +224,8 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group4"
+                  name="lethargic"
+                  value={3}
                 />
                 <div className="title px-2">3</div>
               </label>
@@ -253,7 +233,8 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group4"
+                  name="lethargic"
+                  value={4}
                 />
                 <div className="title px-2">4</div>
               </label>
@@ -261,25 +242,38 @@ export const AddLog = ({workout, currentUserId, createLog}) => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group4"
+                  name="lethargic"
+                  value={5}
                 />
                 <div className="title px-2">5</div>
               </label>
             </div>
 
-            <div className="mb-5 relative">
+            <div className="mb-5 relative" onChange={handleChange}>
               <input
-                type="email"
-                id="email"
-                className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent"
-                placeholder="happy"
-                autocomplete="off"
+                name="workout_name"
+                type="text"
+                className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 "
               />
               <label
-                for="email"
+                for="exercise name"
+                className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out "
+              >
+                What exercise have you done today if any?
+              </label>
+            </div>
+
+            <div className="mb-5 relative" onChange={handleChange}>
+              <input
+                type="text"
+                name="entry"
+                className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16"
+              />
+              <label
+                for="entry"
                 className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
               >
-                Any details you want to add about your mood or your day?
+                Describe your overall mood for your day?
               </label>
             </div>
 

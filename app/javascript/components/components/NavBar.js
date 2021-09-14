@@ -39,7 +39,7 @@ const NavBar = (props) => {
       </div>
       <div className="pr-8 md:block hidden">
         <h3 className="p-4 flex justify-end">
-          {props.logged_in && props.current_user.email}
+          {props.loggedIn && props.currentUser.email}
         </h3>
         <Link className="p-4" to="/">
           Home
@@ -56,13 +56,13 @@ const NavBar = (props) => {
         <Link className="p-4" to="/addlog">
           Add a Log
         </Link>
-        {props.logged_in && (
-          <a className="p-4" href={props.sign_out_route}>
+        {props.loggedIn && (
+          <a className="p-4" href={props.signOutRoute}>
             Logout
           </a>
         )}
-        {!props.logged_in && (
-          <a className="p-4" href={props.sign_in_route}>
+        {!props.loggedIn && (
+          <a className="p-4" href={props.signInRoute}>
             Login
           </a>
         )}

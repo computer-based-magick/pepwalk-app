@@ -55,7 +55,6 @@ function App(props) {
     fetch("/fitness_logs")
       .then((response) => response.json())
       .then((logs) => {
-        console.log(logs);
         setLogs(logs);
       })
       .catch((errors) => console.log(errors));
@@ -65,10 +64,10 @@ function App(props) {
     <>
       <Router>
         <NavBar
-          sign_in_route={props.sign_in_route}
-          sign_out_route={props.sign_out_route}
-          logged_in={props.logged_in}
-          current_user={props.current_user}
+          signInRoute={props.sign_in_route}
+          signOutRoute={props.sign_out_route}
+          loggedIn={props.logged_in}
+          currentUser={props.current_user}
           toggle={toggle}
         />
         <DropDown isOpen={isOpen} toggle={toggle} />

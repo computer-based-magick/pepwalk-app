@@ -1,21 +1,21 @@
 class FitnessLogsController < ApplicationController
 
   def index
-    fitnesslogs = FitnessLog.all
-    render json: fitnesslogs
+    fitness_logs = FitnessLog.all
+    render json: fitness_logs
   end
 
   def create
-    fitnesslog = FitnessLog.create(log_params)
-    if fitnesslog.valid?
-      render json: fitnesslog
+    fitness_log = FitnessLog.create(log_params)
+    if fitness_log.valid?
+      render json: fitness_log
     else
-      render json: fitnesslog.errors, status: 422
+      render json: fitness_log.errors, status: 422
     end
   end
 
   private
     def log_params
-      params.require(:fitnesslog).permit(:date, :workout_name, :workout_id, :happy, :sad, :energetic, :email, :lethargic, :entry, :user_id)
+      params.require(:fitness_log).permit(:date, :workout_name, :workout_id, :happy, :sad, :energetic, :email, :lethargic, :entry, :user_id)
     end
 end

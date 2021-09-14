@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export const AddLog = () => {
+export const AddLog = ({workout, currentUserId, createLog}) => {
   let history = useHistory();
   const redirect = () => {
     history.push("/logs");
   };
+
+  const [log, setLog] = useState({})
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(workout)
+    console.log(currentUserId)
+    createLog({...log, workout: workout, user_id: currentUserId})
+    redirect()
+  }
+  
+  const handleChange = (e) => {
+    setLog({...log, [e.target.name]: e.target.value})
+    console.log(e.target.name)
+    console.log(e.target.value)
+  }
+
+  console.log(log)
+
   return (
     <div className=" bg-red-500  py-6 flex flex-col justify-center sm:py-12">
       <div className="flex-auto py-3 w-11/12  sm:mx-auto">
@@ -44,81 +63,72 @@ export const AddLog = () => {
               </label>
             </div>
 
-            <div className="flex mb-5 relative ">
+            <div className="flex mb-5 relative " onChange={handleChange}>
               <div className=" my-auto px-3  ">
                 Are you sad?
               </div>
-              <label className="flex radio p-5 cursor-pointer ">
-                <input
-                  class="my-auto transform scale-125"
-                  type="radio"
-                  name="group1"
-                />
-                <div className="title px-2">0</div>
-              </label>
 
               <label className="flex radio p-5 cursor-pointer">
+                <div className="title px-2">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group1"
+                  name="sad"
+                  value={1}
                 />
-                <div className="title px-2">1</div>
+                1</div>
               </label>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group1"
+                  name="sad"
+                  value={2}
                 />
                 <div className="title px-2">2</div>
               </label>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group1"
+                  name="sad"
+                  value={3}
                 />
                 <div className="title px-2">3</div>
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group1"
+                  name="sad"
+                  value={4}
                 />
                 <div className="title px-2">4</div>
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group1"
+                  name="sad"
+                  value={5}
                 />
                 <div className="title px-2">5</div>
               </label>
             </div>
 
-            <div className="flex mb-5 relative ">
+            <div className="flex mb-5 relative " onChange={handleChange}>
               <div className=" my-auto px-3  ">
                 Are you happy?
               </div>
-              <label className="flex radio p-5 cursor-pointer ">
-                <input
-                  class="my-auto transform scale-125"
-                  type="radio"
-                  name="group2"
-                />
-                <div className="title px-2">0</div>
-              </label>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group2"
+                  name="happy"
+                  value={1}
                 />
                 <div className="title px-2">1</div>
               </label>
@@ -127,32 +137,33 @@ export const AddLog = () => {
                 <input
                   className="my-auto transform scale-125"
                   type="radio"
-                  name="group2"
+                  name="happy"
+                  value={2}
                 />
                 <div className="title px-2">2</div>
               </label>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group2"
+                  name="happy"
                 />
                 <div className="title px-2">3</div>
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group2"
+                  name="happy"
                 />
                 <div className="title px-2">4</div>
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
-                  name="group2"
+                  name="happy"
                 />
                 <div className="title px-2">5</div>
               </label>
@@ -162,18 +173,10 @@ export const AddLog = () => {
               <div className="my-auto px-3  ">
                 Do you feel energetic?
               </div>
-              <label className="flex radio p-5 cursor-pointer ">
-                <input
-                  class="my-auto transform scale-125"
-                  type="radio"
-                  name="group3"
-                />
-                <div className="title px-2">0</div>
-              </label>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group3"
                 />
@@ -191,7 +194,7 @@ export const AddLog = () => {
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group3"
                 />
@@ -199,7 +202,7 @@ export const AddLog = () => {
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group3"
                 />
@@ -207,7 +210,7 @@ export const AddLog = () => {
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group3"
                 />
@@ -219,18 +222,10 @@ export const AddLog = () => {
               <div className="my-auto px-3  ">
                 How did you sleep?
               </div>
-              <label className="flex radio p-5 cursor-pointer ">
-                <input
-                  class="my-auto transform scale-125"
-                  type="radio"
-                  name="group4"
-                />
-                <div className="title px-2">0</div>
-              </label>
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group4"
                 />
@@ -248,7 +243,7 @@ export const AddLog = () => {
 
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group4"
                 />
@@ -256,7 +251,7 @@ export const AddLog = () => {
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group4"
                 />
@@ -264,7 +259,7 @@ export const AddLog = () => {
               </label>
               <label className="flex radio p-5 cursor-pointer">
                 <input
-                  class="my-auto transform scale-125"
+                  className="my-auto transform scale-125"
                   type="radio"
                   name="group4"
                 />
@@ -289,7 +284,7 @@ export const AddLog = () => {
             </div>
 
             <button
-              onClick={redirect}
+              onClick={handleSubmit}
               className="w-full bg-indigo-600 text-white p-3 rounded-md"
             >
               Submit

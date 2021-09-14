@@ -17,6 +17,8 @@ const getRandomWorkout = (workouts) => {
   return workouts[randNum];
 };
 
+
+
 function App(props) {
   const [workout, setWorkout] = useState({});
   const [logs, setLogs] = useState([]);
@@ -26,6 +28,38 @@ function App(props) {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const getLogs = () => {
+    fetch("/fitness_logs")
+        .then((response) => response.json())
+        .then((logs) => {
+          setLogs(logs);
+        })
+        .catch((errors) => console.log(errors));
+  }
+  
+  const createLog = (newLog) => {
+    console.log(newLog)
+    return fetch("/fitness_logs", {
+      body: JSON.stringify(newLog),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert("Please check your submission.");
+        }
+        return response.json();
+      })
+      .then((payload) => {
+        getLogs();
+      })
+      .catch((errors) => {
+        console.log("apartment create errors", errors);
+      });
+  }
 
   useEffect(() => {
     const hideMenu = () => {
@@ -52,12 +86,7 @@ function App(props) {
   }, []);
 
   useEffect(() => {
-    fetch("/fitness_logs")
-      .then((response) => response.json())
-      .then((logs) => {
-        setLogs(logs);
-      })
-      .catch((errors) => console.log(errors));
+    getLogs()
   }, []);
 
   return (
@@ -89,7 +118,12 @@ function App(props) {
               return <LogShow log={log} />;
             }}
           />
-          <Route path="/addlog" component={AddLog} />
+          <Route
+            path="/addlog"
+            component={() => 
+              <AddLog workout={workout} currentUserId={props.current_user.id} createLog={createLog}/>
+            }
+          />
           <Route path="/contact" component={Contact} />
           <Route
             path="/workout"

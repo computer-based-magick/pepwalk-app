@@ -17,9 +17,15 @@ class FitnessLogsController < ApplicationController
   def update
     fitness_log = FitnessLog.find(params[:id])
     fitness_log.update(log_params)
-    render json:fitness_log
+    render json: fitness_log
   end
-  
+
+def destroy
+  fitness_log = FitnessLog.find(params[:id])
+  fitness_log.destroy
+  render json: fitness_log
+end
+
   private
     def log_params
       params.require(:fitness_log).permit(:date, :workout_name, :workout_id, :happy, :sad, :energetic, :email, :lethargic, :entry, :user_id)

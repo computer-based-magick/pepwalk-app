@@ -68,7 +68,7 @@ RSpec.describe "FitnessLogs", type: :request do
   end
 
   describe "PATCH/update" do
-    it 'updates the fitness log' do
+    it "updates the fitness log" do
       fitness_log_params = {
         fitness_log: {
           date: '2021-09-10T22:09:16.408Z',
@@ -108,4 +108,28 @@ RSpec.describe "FitnessLogs", type: :request do
     end
   end
 
+  describe "DELETE/destroy" do
+    it "deletes a fitness log" do
+      fitness_log_params = {
+        fitness_log: {
+          date: '2021-09-10T22:09:16.408Z',
+          workout_id: 874,
+          workout_name: 'Forward Lunge',
+          happy: 5,
+          sad: 5,
+          energetic: 7,
+          lethargic: 2,
+          entry: 'crushed it!',
+          user_id: user.id,
+        }
+      }
+      post '/fitness_logs', params: fitness_log_params
+      new_fitness_log=FitnessLog.first
+      delete "/fitness_logs/#{new_fitness_log.id}"
+      expect(response).to have_http_status(200)
+      fitness_logs=FitnessLog.all
+      expect(fitness_logs).to be_empty
+    end
+  end
+  
 end

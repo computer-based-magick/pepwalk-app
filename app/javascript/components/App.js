@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
 import LogShow from "./pages/LogShow";
+import LogEdit from "./pages/LogEdit"
 
 const getRandomWorkout = (workouts) => {
   const randNum = Math.floor(Math.random() * workouts.length - 1);
@@ -37,7 +38,7 @@ function App(props) {
         })
         .catch((errors) => console.log(errors));
   }
-  
+
   const createLog = (newLog) => {
     console.log(newLog)
     return fetch("/fitness_logs", {
@@ -60,6 +61,30 @@ function App(props) {
         console.log("apartment create errors", errors);
       });
   }
+
+  const updateLog = (log) => {
+    console.log(log)
+    // return fetch("/fitness_logs", {
+    //   body: JSON.stringify(newLog),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   method: "POST",
+    // })
+    //   .then((response) => {
+    //     if (response.status === 422) {
+    //       alert("Please check your submission.");
+    //     }
+    //     return response.json();
+    //   })
+    //   .then((payload) => {
+    //     getLogs();
+    //   })
+    //   .catch((errors) => {
+    //     console.log("apartment create errors", errors);
+    //   });
+  }
+
 
   useEffect(() => {
     const hideMenu = () => {
@@ -119,8 +144,16 @@ function App(props) {
             }}
           />
           <Route
+            path="/logedit/:id"
+            render={(props) => {
+              let id = props.match.params.id;
+              let log = logs.find((log) => log.id === +id);
+              return <LogEdit oldLog={log} updateLog={updateLog} />;
+            }}
+          />
+          <Route
             path="/addlog"
-            component={() => 
+            component={() =>
               <AddLog workout={workout} currentUserId={props.current_user.id} createLog={createLog}/>
             }
           />

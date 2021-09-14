@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const LogShow = ({ log }) => {
+ const LogShow = ({ log }) => {
   console.log("LOG!!!", log);
   return (
     <div className=" bg-yellow-500 flex flex-col h-screen md:flex-row justify-center  flex-wrap gap-3 mt-0  py-4">
@@ -56,3 +56,4 @@ export const LogShow = ({ log }) => {
     </div>
   );
 };
+export default LogShow

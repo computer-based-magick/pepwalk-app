@@ -17,7 +17,10 @@ class FitnessLogsController < ApplicationController
   def update
     fitness_log = FitnessLog.find(params[:id])
     fitness_log.update(log_params)
-    render json: fitness_log
+    if fitness_log.valid?
+      render json: fitness_log
+    else
+      render json: fitness_log.errors, status: 422
   end
 
 def destroy

@@ -39,4 +39,4 @@ import React from "react";
     </>
   );
 };
-export default Contact
+export default Contact;

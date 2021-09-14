@@ -21,6 +21,7 @@ class FitnessLogsController < ApplicationController
       render json: fitness_log
     else
       render json: fitness_log.errors, status: 422
+    end
   end
 
 def destroy

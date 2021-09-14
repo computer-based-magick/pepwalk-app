@@ -57,4 +57,4 @@ import { format } from 'date-fns'
     </div>
   );
 };
-export default LogShow
+export default LogShow;

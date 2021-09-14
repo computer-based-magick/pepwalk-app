@@ -6,11 +6,11 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import About from "./pages/About";
 import Logs from "./pages/Logs";
 import DropDown from "./components/DropDown";
-import { AddLog } from "./pages/AddLog";
-import { Contact } from "./pages/Contact";
+import AddLog from "./pages/AddLog";
+import Contact from "./pages/Contact";
 import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
-import { LogShow } from "./pages/LogShow";
+import LogShow from "./pages/LogShow";
 
 const getRandomWorkout = (workouts) => {
   const randNum = Math.floor(Math.random() * workouts.length - 1);

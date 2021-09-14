@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export const AddLog = ({ workout, currentUserId, createLog }) => {
+const AddLog = ({ workout, currentUserId, createLog }) => {
   let history = useHistory();
   const redirect = () => {
     history.push("/logs");
@@ -289,3 +289,4 @@ export const AddLog = ({ workout, currentUserId, createLog }) => {
     </div>
   );
 };
+export default AddLog;

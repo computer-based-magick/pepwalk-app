@@ -11,14 +11,12 @@ import Contact from "./pages/Contact";
 import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
 import LogShow from "./pages/LogShow";
-import LogEdit from "./pages/LogEdit"
+import LogEdit from "./pages/LogEdit";
 
 const getRandomWorkout = (workouts) => {
   const randNum = Math.floor(Math.random() * workouts.length - 1);
   return workouts[randNum];
 };
-
-
 
 function App(props) {
   const [workout, setWorkout] = useState({});
@@ -32,15 +30,15 @@ function App(props) {
 
   const getLogs = () => {
     fetch("/fitness_logs")
-        .then((response) => response.json())
-        .then((logs) => {
-          setLogs(logs);
-        })
-        .catch((errors) => console.log(errors));
-  }
+      .then((response) => response.json())
+      .then((logs) => {
+        setLogs(logs);
+      })
+      .catch((errors) => console.log(errors));
+  };
 
   const createLog = (newLog) => {
-    console.log(newLog)
+    console.log(newLog);
     return fetch("/fitness_logs", {
       body: JSON.stringify(newLog),
       headers: {
@@ -60,12 +58,12 @@ function App(props) {
       .catch((errors) => {
         console.log("log create errors", errors);
       });
-  }
+  };
 
   const updateLog = (log) => {
-    console.log(log)
-    return fetch("/fitness_logs", {
-      body: JSON.stringify(newLog),
+    console.log(log);
+    return fetch(`/fitness_logs/${log.id}`, {
+      body: JSON.stringify(log),
       headers: {
         "Content-Type": "application/json",
       },
@@ -83,8 +81,7 @@ function App(props) {
       .catch((errors) => {
         console.log("log create errors", errors);
       });
-  }
-
+  };
 
   useEffect(() => {
     const hideMenu = () => {
@@ -111,7 +108,7 @@ function App(props) {
   }, []);
 
   useEffect(() => {
-    getLogs()
+    getLogs();
   }, []);
 
   return (
@@ -148,14 +145,19 @@ function App(props) {
             render={(props) => {
               let id = props.match.params.id;
               let log = logs.find((log) => log.id === +id);
+              if (!log) return null;
               return <LogEdit oldLog={log} updateLog={updateLog} />;
             }}
           />
           <Route
             path="/addlog"
-            component={() =>
-              <AddLog workout={workout} currentUserId={props.current_user.id} createLog={createLog}/>
-            }
+            component={() => (
+              <AddLog
+                workout={workout}
+                currentUserId={props.current_user.id}
+                createLog={createLog}
+              />
+            )}
           />
           <Route path="/contact" component={Contact} />
           <Route

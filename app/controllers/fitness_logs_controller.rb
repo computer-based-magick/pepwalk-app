@@ -1,7 +1,7 @@
 class FitnessLogsController < ApplicationController
 
   def index
-    fitness_logs = FitnessLog.all
+    fitness_logs = FitnessLog.all.order(id: :asc)
     render json: fitness_logs
   end
 

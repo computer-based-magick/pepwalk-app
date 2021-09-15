@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { format } from "date-fns";
 
-const LogEdit = ({ oldLog, updateLog  }) => {
+const LogEdit = ({ oldLog, updateLog }) => {
   let history = useHistory();
   const redirect = () => {
     history.push("/logs");
   };
 
-  const [log, setLog] = useState({});
-
-  useEffect (() => {
-    setLog({
-      "happy": oldLog.happy,
-      "entry": oldLog.entry,
-      "sad": oldLog.sad,
-      "lethargic": oldLog.lethargic,
-      "engergetic": oldLog.energetic,
-      "date": oldLog.date,
-      "workout_name": oldLog.workout_name
-    })
-  }, [])
+  const [log, setLog] = useState({
+    id: oldLog.id,
+    happy: oldLog.happy,
+    entry: oldLog.entry,
+    sad: oldLog.sad,
+    lethargic: oldLog.lethargic,
+    engergetic: oldLog.energetic,
+    date: oldLog.date,
+    workout_name: oldLog.workout_name,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createLog({ ...log, workout_id: -1 });
+    updateLog({ ...log, workout_id: -1 });
     redirect();
   };
 
@@ -33,8 +31,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
     console.log(e.target.value);
   };
 
-  console.log(oldLog)
-  console.log(log.happy);
+  console.log(log);
 
   return (
     <div className=" bg-red-500  py-6 flex flex-col justify-center sm:py-12">
@@ -44,9 +41,11 @@ const LogEdit = ({ oldLog, updateLog  }) => {
             <div className="mb-5 relative" onChange={handleChange}>
               <input
                 type="date"
+                defaultValue={format(new Date(oldLog.date), "yyyy-mm-dd")}
                 name="date"
                 className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 "
               />
+
               <label className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out">
                 Date
               </label>
@@ -60,7 +59,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="sad"
-                  checked={log.sad === 1}
+                  checked={log.sad == 1}
                   value={1}
                 />
                 <div className="title px-2">1</div>
@@ -71,7 +70,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="sad"
-                  checked={log.sad === 2}
+                  checked={log.sad == 2}
                   value={2}
                 />
                 <div className="title px-2">2</div>
@@ -82,7 +81,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="sad"
-                  checked={log.sad === 3}
+                  checked={log.sad == 3}
                   value={3}
                 />
                 <div className="title px-2">3</div>
@@ -92,7 +91,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="sad"
-                  checked={log.sad === 4}
+                  checked={log.sad == 4}
                   value={4}
                 />
                 <div className="title px-2">4</div>
@@ -102,7 +101,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="sad"
-                  checked={log.sad === 5}
+                  checked={log.sad == 5}
                   value={5}
                 />
                 <div className="title px-2">5</div>
@@ -117,7 +116,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
-                  checked={log.happy === 1}
+                  checked={log.happy == 1}
                   value={1}
                 />
                 <div className="title px-2">1</div>
@@ -128,7 +127,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
-                  checked={log.happy === 2}
+                  checked={log.happy == 2}
                   value={2}
                 />
                 <div className="title px-2">2</div>
@@ -139,7 +138,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
-                  checked={log.happy === 3}
+                  checked={log.happy == 3}
                   value={3}
                 />
                 <div className="title px-2">3</div>
@@ -149,7 +148,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
-                  checked={log.happy === 4}
+                  checked={log.happy == 4}
                   value={4}
                 />
                 <div className="title px-2">4</div>
@@ -159,7 +158,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="happy"
-                  checked={log.happy === 5}
+                  checked={log.happy == 5}
                   value={5}
                 />
                 <div className="title px-2">5</div>
@@ -174,7 +173,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="energetic"
-                  checked={log.energetic === 1}
+                  checked={log.energetic == 1}
                   value={1}
                 />
                 <div className="title px-2">1</div>
@@ -185,7 +184,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="energetic"
-                  checked={log.energetic === 2}
+                  checked={log.energetic == 2}
                   value={2}
                 />
                 <div className="title px-2">2</div>
@@ -196,7 +195,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="energetic"
-                  checked={log.energetic === 3}
+                  checked={log.energetic == 3}
                   value={3}
                 />
                 <div className="title px-2">3</div>
@@ -206,7 +205,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="energetic"
-                  checked={log.energetic === 4}
+                  checked={log.energetic == 4}
                   value={4}
                 />
                 <div className="title px-2">4</div>
@@ -216,7 +215,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="energetic"
-                  checked={log.energetic === 5}
+                  checked={log.energetic == 5}
                   value={5}
                 />
                 <div className="title px-2">5</div>
@@ -231,7 +230,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="lethargic"
-                  checked={log.lethargic === 1}
+                  checked={log.lethargic == 1}
                   value={1}
                 />
                 <div className="title px-2">1</div>
@@ -242,7 +241,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="lethargic"
-                  checked={log.lethargic === 2}
+                  checked={log.lethargic == 2}
                   value={2}
                 />
                 <div className="title px-2">2</div>
@@ -253,7 +252,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="lethargic"
-                  checked={log.lethargic === 3}
+                  checked={log.lethargic == 3}
                   value={3}
                 />
                 <div className="title px-2">3</div>
@@ -263,7 +262,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="lethargic"
-                  checked={log.lethargic === 4}
+                  checked={log.lethargic == 4}
                   value={4}
                 />
                 <div className="title px-2">4</div>
@@ -273,7 +272,7 @@ const LogEdit = ({ oldLog, updateLog  }) => {
                   className="my-auto transform scale-125"
                   type="radio"
                   name="lethargic"
-                  checked={log.lethargic === 5}
+                  checked={log.lethargic == 5}
                   value={5}
                 />
                 <div className="title px-2">5</div>
@@ -282,12 +281,13 @@ const LogEdit = ({ oldLog, updateLog  }) => {
 
             <div className="mb-5 relative" onChange={handleChange}>
               <input
+                value={log.workout_name}
                 name="workout_name"
                 type="text"
                 className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 "
               />
               <label
-                for="exercise name"
+                htmlFor="workout_name"
                 className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out "
               >
                 What exercise have you done today if any?
@@ -296,12 +296,13 @@ const LogEdit = ({ oldLog, updateLog  }) => {
 
             <div className="mb-5 relative" onChange={handleChange}>
               <input
+                value={log.entry}
                 type="text"
                 name="entry"
                 className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16"
               />
               <label
-                for="entry"
+                htmlFor="entry"
                 className="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out"
               >
                 Describe your overall mood for your day?

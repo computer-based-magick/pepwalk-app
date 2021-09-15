@@ -58,31 +58,31 @@ function App(props) {
         getLogs();
       })
       .catch((errors) => {
-        console.log("apartment create errors", errors);
+        console.log("log create errors", errors);
       });
   }
 
   const updateLog = (log) => {
     console.log(log)
-    // return fetch("/fitness_logs", {
-    //   body: JSON.stringify(newLog),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   method: "POST",
-    // })
-    //   .then((response) => {
-    //     if (response.status === 422) {
-    //       alert("Please check your submission.");
-    //     }
-    //     return response.json();
-    //   })
-    //   .then((payload) => {
-    //     getLogs();
-    //   })
-    //   .catch((errors) => {
-    //     console.log("apartment create errors", errors);
-    //   });
+    return fetch("/fitness_logs", {
+      body: JSON.stringify(newLog),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert("Please check your submission.");
+        }
+        return response.json();
+      })
+      .then((payload) => {
+        getLogs();
+      })
+      .catch((errors) => {
+        console.log("log create errors", errors);
+      });
   }
 
 

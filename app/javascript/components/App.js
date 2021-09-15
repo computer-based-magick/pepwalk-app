@@ -60,8 +60,26 @@ function App(props) {
       });
   };
 
+  const deleteLog = (id) => {
+    return fetch(`/fitness_logs/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((payload) => {
+        getLogs();
+      })
+      .catch((errors) => {
+        console.log("log create errors", errors);
+      });
+  };
+
+
   const updateLog = (log) => {
-    console.log(log);
     return fetch(`/fitness_logs/${log.id}`, {
       body: JSON.stringify(log),
       headers: {
@@ -137,7 +155,7 @@ function App(props) {
             render={(props) => {
               let id = props.match.params.id;
               let log = logs.find((log) => log.id === +id);
-              return <LogShow log={log} />;
+              return <LogShow log={log} deleteLog={deleteLog}/>;
             }}
           />
           <Route

@@ -14,7 +14,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
     entry: oldLog.entry,
     sad: oldLog.sad,
     lethargic: oldLog.lethargic,
-    engergetic: oldLog.energetic,
+    energetic: oldLog.energetic,
     date: oldLog.date,
     workout_name: oldLog.workout_name,
   });
@@ -27,11 +27,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
 
   const handleChange = (e) => {
     setLog({ ...log, [e.target.name]: e.target.value });
-    console.log(e.target.name);
-    console.log(e.target.value);
   };
-
-  console.log(log);
 
   return (
     <div className=" bg-red-500  py-6 flex flex-col justify-center sm:py-12">
@@ -41,7 +37,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
             <div className="mb-5 relative" onChange={handleChange}>
               <input
                 type="date"
-                defaultValue={format(new Date(oldLog.date), "yyyy-mm-dd")}
+                defaultValue={format(new Date(log.date), "yyyy-MM-dd")}
                 name="date"
                 className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 "
               />

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { format } from 'date-fns'
 
- const LogShow = ({ log }) => {
+ const LogShow = ({ log, deleteLog }) => {
   return (
     <div className=" bg-yellow-500 flex flex-col h-screen md:flex-row justify-center  flex-wrap gap-3 mt-0  py-4">
       <div className="bg-white w-96 shadow-lg   mx-auto border-b-4 border-indigo-500 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
@@ -47,12 +47,15 @@ import { format } from 'date-fns'
               back to your logs
             </button>
           </Link>
+          <Link to="/logs">
           <button
             type="button"
+            onClick = {() => deleteLog(log.id)}
             className="border border-red-500 text-red-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-red-600 focus:outline-none focus:shadow-outline"
           >
             delete
           </button>
+          </Link>
         </div>
       </div>
     </div>

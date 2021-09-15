@@ -47,13 +47,15 @@ import { format } from 'date-fns'
               back to your logs
             </button>
           </Link>
+          <Link to="/logs">
           <button
             type="button"
-            onClick = {() => deleteLog(log.id)} 
+            onClick = {() => deleteLog(log.id)}
             className="border border-red-500 text-red-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-red-600 focus:outline-none focus:shadow-outline"
           >
             delete
           </button>
+          </Link>
         </div>
       </div>
     </div>

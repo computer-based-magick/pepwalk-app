@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { format } from 'date-fns' 
+import { format } from 'date-fns'
 
  const LogShow = ({ log }) => {
-  console.log("LOG!!!", log);
   return (
     <div className=" bg-yellow-500 flex flex-col h-screen md:flex-row justify-center  flex-wrap gap-3 mt-0  py-4">
       <div className="bg-white w-96 shadow-lg   mx-auto border-b-4 border-indigo-500 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
@@ -32,12 +31,14 @@ import { format } from 'date-fns'
           Overall Rating {log && log.entry}
         </p>
         <div className="flex justify-center px-5 mb-2 text-sm ">
+        <Link to={`/logedit/${log.id}`}>
           <button
             type="button"
             className="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
           >
             edit
           </button>
+          </Link>
           <Link to="/logs">
             <button
               type="button"

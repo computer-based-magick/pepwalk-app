@@ -44,17 +44,21 @@ const NavBar = (props) => {
         <Link className="p-4" to="/">
           Home
         </Link>
+          {props.loggedIn && (
+        <>
         <Link className="p-4" to="/logs">
           Logs
         </Link>
+        <Link className="p-4" to="/addlog">
+          Add a Log
+        </Link>
+        </>
+        )}
         <Link className="p-4" to="/about">
           About
         </Link>
         <Link className="p-4" to="/contact">
           Contact
-        </Link>
-        <Link className="p-4" to="/addlog">
-          Add a Log
         </Link>
         {props.loggedIn && (
           <a className="p-4" href={props.signOutRoute}>

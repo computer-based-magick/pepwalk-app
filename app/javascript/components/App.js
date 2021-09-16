@@ -21,7 +21,6 @@ const getRandomWorkout = (workouts) => {
 function App(props) {
   const [workout, setWorkout] = useState({});
   const [logs, setLogs] = useState([]);
-  const [refresh, setRefresh] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -38,7 +37,6 @@ function App(props) {
   };
 
   const createLog = (newLog) => {
-    console.log(newLog);
     return fetch("/fitness_logs", {
       body: JSON.stringify(newLog),
       headers: {
@@ -77,7 +75,6 @@ function App(props) {
         console.log("log create errors", errors);
       });
   };
-
 
   const updateLog = (log) => {
     return fetch(`/fitness_logs/${log.id}`, {

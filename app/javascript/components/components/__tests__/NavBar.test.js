@@ -11,9 +11,8 @@ describe("When NavBar renders", () => {
     const renderNavBar = shallow(<NavBar />);
     const renderText = renderNavBar.find("Link");
     expect(renderText.at(1).text()).toEqual("Home");
-    expect(renderText.at(2).text()).toEqual("Logs");
-    expect(renderText.at(3).text()).toEqual("About");
-    expect(renderText.at(4).text()).toEqual("Contact");
+    expect(renderText.at(2).text()).toEqual("About");
+    expect(renderText.at(3).text()).toEqual("Contact");
   });
   it("renders an anchor link to log out when user is logged in", () => {
     const renderNavBar = shallow(<NavBar  logged_in={true} current_user={current_user}/>);

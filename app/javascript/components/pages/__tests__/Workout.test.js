@@ -11,4 +11,11 @@ describe("When Workout page renders", () => {
     const renderText = renderh1.find("h1");
     expect(renderText.length).toEqual(2);
   });
+
+  it("has a link to add a log", () => {
+    const renderPage = shallow(<Workout />);
+    const linkTag = renderPage.find("Link")
+    expect(linkTag.props().to).toEqual('/addlog')
+    expect(linkTag.text()).toEqual('Add A Log')
+  })
 });

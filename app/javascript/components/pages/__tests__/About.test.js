@@ -5,23 +5,23 @@ import About from "../About";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("When Logs page renders", () => {
-  const log =
-      {
-          date: "2021-09-10T22:09:16.408Z",
-          workout_id: 874,
-          workout_name: 'Forward Lunge',
-          happy: 5,
-          sad: 5,
-          energetic: 7,
-          lethargic: 2,
-          entry: 'crushed it!',
-          id: 1
-      }
+describe("When About page renders", () => {
 
   it("displays 4 p tags", () => {
-    const renderlog = shallow(<About log={log}/>);
+    const renderlog = shallow(<About />);
     const renderText = renderlog.find("p");
+    expect(renderText.length).toEqual(4);
+  });
+
+  it("displays 4 img tags", () => {
+    const renderlog = shallow(<About />);
+    const renderText = renderlog.find("img");
+    expect(renderText.length).toEqual(4);
+  });
+
+  it("displays 4 h5 tags", () => {
+    const renderlog = shallow(<About />);
+    const renderText = renderlog.find("h5");
     expect(renderText.length).toEqual(4);
   });
 });

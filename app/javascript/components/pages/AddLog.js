@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const AddLog = ({ workout, currentUserId, createLog }) => {
@@ -11,19 +11,13 @@ const AddLog = ({ workout, currentUserId, createLog }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(workout);
-    console.log(currentUserId);
     createLog({ ...log, workout_id: -1, user_id: currentUserId });
     redirect();
   };
 
   const handleChange = (e) => {
     setLog({ ...log, [e.target.name]: e.target.value });
-    console.log(e.target.name);
-    console.log(e.target.value);
   };
-
-  console.log(log);
 
   return (
     <div className=" bg-red-500  py-6 flex flex-col justify-center sm:py-12">

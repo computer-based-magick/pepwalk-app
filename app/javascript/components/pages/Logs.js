@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
 const Logs = ({ logs }) => {
-  console.log({ logs });
   return (
     logs &&
     logs.map((log) => {

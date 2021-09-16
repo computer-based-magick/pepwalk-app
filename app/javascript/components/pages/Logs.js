@@ -10,7 +10,7 @@ const Logs = ({ logs }) => {
       return (
         <div
           key={log.id}
-          className=" bg-yellow-500 flex flex-col h-screen md:flex-row justify-center space-y-1 flex-wrap gap-3 mt-0  py-40"
+          className=" bg-yellow-500 flex flex-col h-screen md:flex-row justify-center  flex-wrap gap-3 mt-0  py-20"
         >
           <div className="bg-white h-80 w-72 shadow-lg   mx-auto border-b-4 border-indigo-500 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer">
             <div className="bg-indigo-500  flex h-20  items-center">

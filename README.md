@@ -24,7 +24,7 @@ rails db:seeds
 rails db:migrate
 ```
 
-# Dependencies
+## Dependencies
 - [Tailwind](https://tailwindcss.com/)
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Webpack](https://webpack.js.org/)

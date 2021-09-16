@@ -40,4 +40,4 @@ rails db:migrate
 - Create a journal entry for each day that catologs your feelings, workout and date.
 
 ## Contributers
-App was created by [Lauralyn](https://github.com/lauralyngonzalez) [heather](https://github.com/hroulston), [Andy](https://github.com/Andy19936) and [Jared](https://github.com/Jatded1d9l7)
+App was created by [Lauralyn](https://github.com/lauralyngonzalez), [Heather](https://github.com/hroulston), [Andy](https://github.com/Andy19936) and [Jared](https://github.com/Jatded1d9l7)

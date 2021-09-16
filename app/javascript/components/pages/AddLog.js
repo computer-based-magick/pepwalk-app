@@ -34,7 +34,7 @@ const AddLog = ({ workout, currentUserId, createLog }) => {
                 Date
               </label>
             </div>
-
+            <p className="flex items-center p-3"> 1 being not all, 5 being extremely</p>
             <div className="flex mb-5 relative " onChange={handleChange}>
               <div className=" my-auto px-3  ">Are you sad?</div>
 

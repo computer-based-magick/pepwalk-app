@@ -6,7 +6,7 @@ import NotFound from "../NotFound";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("When Logs page renders", () => {
+describe("When Not Found page renders", () => {
 
   it("displays an h4 tag", () => {
     const renderlog = shallow(<NotFound />);

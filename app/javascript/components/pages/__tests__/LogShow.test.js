@@ -5,7 +5,7 @@ import LogShow from "../LogShow";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("When Logs page renders", () => {
+describe("When Log Show page renders", () => {
   const log =
       {
           date: "2021-09-10T22:09:16.408Z",

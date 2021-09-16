@@ -1,6 +1,6 @@
 import React from "react";
 
-const NotLoggedIn = (props) => {
+const NotLoggedIn = () => {
   return (
     <div className="bg-purple-500 h-screen flex flex-col justify-center items-center w-screen">
       <h1 className="lg:text-9xl md:text-7xl sm:text-5xl text-3xl text-white font-black mb-14">

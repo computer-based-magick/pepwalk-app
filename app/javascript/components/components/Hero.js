@@ -7,6 +7,13 @@ const Hero = () => {
       <h1 className="lg:text-9xl md:text-7xl sm:text-5xl text-3xl text-white font-black mb-14">
         PepWalk
       </h1>
+      <h1 className="lg:text-xl md:text-7xl sm:text-5xl text-3xl text-center text-white font-black mb-14 w-4/6">
+        Welcome to PepWalk to get started create an entry by clicking add a log
+        button down below. If you don't have a workout in mind feel free to use
+        our get a workout button to give you some inspiration.
+      </h1>
+      <br />
+
       <Link
         className="py-6 px-10  bg-white rounded-full text-3xl hover:bg-blue-300 transition duration-300 ease-in-out flex items-center animate-bounce text-black font-extralight "
         to="/addlog"
@@ -28,6 +35,7 @@ const Hero = () => {
         </svg>
       </Link>
       <br />
+
       <Link
         className="py-6 px-10  bg-white rounded-full text-3xl hover:bg-blue-300 transition duration-300 ease-in-out flex items-center animate-bounce text-black font-extralight "
         to="/workout"

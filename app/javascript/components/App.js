@@ -11,18 +11,16 @@ import Contact from "./pages/Contact";
 import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
 import LogShow from "./pages/LogShow";
+import LogEdit from "./pages/LogEdit";
 
 const getRandomWorkout = (workouts) => {
   const randNum = Math.floor(Math.random() * workouts.length - 1);
   return workouts[randNum];
 };
 
-
-
 function App(props) {
   const [workout, setWorkout] = useState({});
   const [logs, setLogs] = useState([]);
-  const [refresh, setRefresh] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -31,15 +29,14 @@ function App(props) {
 
   const getLogs = () => {
     fetch("/fitness_logs")
-        .then((response) => response.json())
-        .then((logs) => {
-          setLogs(logs);
-        })
-        .catch((errors) => console.log(errors));
-  }
-  
+      .then((response) => response.json())
+      .then((logs) => {
+        setLogs(logs);
+      })
+      .catch((errors) => console.log(errors));
+  };
+
   const createLog = (newLog) => {
-    console.log(newLog)
     return fetch("/fitness_logs", {
       body: JSON.stringify(newLog),
       headers: {
@@ -57,9 +54,49 @@ function App(props) {
         getLogs();
       })
       .catch((errors) => {
-        console.log("apartment create errors", errors);
+        console.log("log create errors", errors);
       });
-  }
+  };
+
+  const deleteLog = (id) => {
+    return fetch(`/fitness_logs/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((payload) => {
+        getLogs();
+      })
+      .catch((errors) => {
+        console.log("log create errors", errors);
+      });
+  };
+
+  const updateLog = (log) => {
+    return fetch(`/fitness_logs/${log.id}`, {
+      body: JSON.stringify(log),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert("Please check your submission.");
+        }
+        return response.json();
+      })
+      .then((payload) => {
+        getLogs();
+      })
+      .catch((errors) => {
+        console.log("log create errors", errors);
+      });
+  };
 
   useEffect(() => {
     const hideMenu = () => {
@@ -86,7 +123,7 @@ function App(props) {
   }, []);
 
   useEffect(() => {
-    getLogs()
+    getLogs();
   }, []);
 
   return (
@@ -115,14 +152,27 @@ function App(props) {
             render={(props) => {
               let id = props.match.params.id;
               let log = logs.find((log) => log.id === +id);
-              return <LogShow log={log} />;
+              return <LogShow log={log} deleteLog={deleteLog}/>;
+            }}
+          />
+          <Route
+            path="/logedit/:id"
+            render={(props) => {
+              let id = props.match.params.id;
+              let log = logs.find((log) => log.id === +id);
+              if (!log) return null;
+              return <LogEdit oldLog={log} updateLog={updateLog} />;
             }}
           />
           <Route
             path="/addlog"
-            component={() => 
-              <AddLog workout={workout} currentUserId={props.current_user.id} createLog={createLog}/>
-            }
+            component={() => (
+              <AddLog
+                workout={workout}
+                currentUserId={props.current_user.id}
+                createLog={createLog}
+              />
+            )}
           />
           <Route path="/contact" component={Contact} />
           <Route

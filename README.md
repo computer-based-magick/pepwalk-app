@@ -1,3 +1,4 @@
+
 # Pepwalk
 
 Pepwalk is a ruby on rails/react application that was created to help keep track your mood as you work out. Logging your mood and seeing the internal benefits that you’re reaping from your fitness journey or lack thereof has so much more value to it than stepping on a scale or looking in the mirror.  Looking back at your entries will help you get a clearer understanding that what you’re doing is actually working not just on the outside but on the inside as well!

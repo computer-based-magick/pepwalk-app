@@ -9,7 +9,7 @@ const NotLoggedIn = (props) => {
         PepWalk
       </h1>
       <br />
-      <h1 className="lg:text-xl md:text-7xl sm:text-5xl text-3xl text-white font-black mb-14 ">
+      <h1 className="lg:text-xl md:text-7xl sm:text-5xl text-3xl text-center text-white font-black mb-14 w-4/6 ">
         Welcome to PepWalk an app to motivate you through your fitness journey
         by adding a visual representation to what goes on internally when you
         exercise vs when you don't please sign up to get started!

@@ -30,7 +30,7 @@ describe("When Log Show page renders", () => {
     const renderText = renderlog.find("p");
     expect(renderText.length).toEqual(7);
   });
-  //
+  
   it("has a buttons to edit, go back, and delete", () => {
     const renderlog = shallow(<LogShow log={log}/>);
     const renderText = renderlog.find("button");

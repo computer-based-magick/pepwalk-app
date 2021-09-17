@@ -5,7 +5,6 @@ import { format } from "date-fns";
 const LogCard = ({ log }) => {
   return (
     <div
-      key={log.id}
       className="bg-white h-80 w-72 shadow-lg   mx-auto border-b-4 border-indigo-500 rounded-2xl overflow-hidden  hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer"
     >
       <div className="bg-indigo-500  flex h-20  items-center">

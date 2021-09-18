@@ -18,7 +18,7 @@ const AddLog = ({ workout, currentUserId, createLog }) => {
   const handleChange = (e) => {
     setLog({ ...log, [e.target.name]: e.target.value });
   };
-console.log("log: ", log)
+
   return (
     <div className=" bg-red-500  py-6 flex flex-col justify-center sm:py-12">
       <div className="flex-auto py-3 w-11/12  sm:mx-auto">

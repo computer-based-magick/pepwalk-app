@@ -12,6 +12,7 @@ import WorkOut from "./pages/Workout";
 import NotFound from "./pages/NotFound";
 import LogShow from "./pages/LogShow";
 import LogEdit from "./pages/LogEdit";
+import WorkoutList from "./pages/WorkoutList";
 
 const getRandomWorkout = (workouts) => {
   const randNum = Math.floor(Math.random() * workouts.length - 1);
@@ -22,6 +23,7 @@ function App(props) {
   const [workout, setWorkout] = useState({});
   const [logs, setLogs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [workoutResults, setWorkoutResults] = useState([]);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -118,6 +120,7 @@ function App(props) {
       .then((response) => response.json())
       .then((workouts) => {
         setWorkout(getRandomWorkout(workouts.results));
+        setWorkoutResults(workouts.results);
       })
       .catch((errors) => console.log(errors));
   }, []);
@@ -180,6 +183,9 @@ function App(props) {
             component={() => (
               <WorkOut workout={workout} setWorkout={setWorkout} />
             )}
+          />
+          <Route path="/workoutlist" component={() => (<WorkoutList workoutResults={workoutResults} />
+          )}
           />
           <Route component={NotFound} />
         </Switch>

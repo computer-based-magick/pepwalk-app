@@ -30,7 +30,7 @@ describe("When Log Show page renders", () => {
     const renderText = renderlog.find("p");
     expect(renderText.length).toEqual(7);
   });
-  //
+  
   it("has a buttons to edit, go back, and delete", () => {
     const renderlog = shallow(<LogShow log={log}/>);
     const renderText = renderlog.find("button");
@@ -38,4 +38,10 @@ describe("When Log Show page renders", () => {
     expect(renderText.at(1).text()).toEqual("back to your logs");
     expect(renderText.at(2).text()).toEqual("delete");
   });
+
+  it("has links for edit, delete and go back to logs", () => {
+    const renderlog = shallow(<LogShow log={log}/>);
+    const linkTags = renderlog.find("Link");
+    expect(linkTags.length).toEqual(3)
+  })
 });

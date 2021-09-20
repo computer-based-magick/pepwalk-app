@@ -1,28 +1,51 @@
 import React from "react";
-import Enzyme, { shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Enzyme, { mount } from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import AddLog from "../AddLog";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("When Add Log page renders", () => {
-  const logs = [
-      {
-          date: "2021-09-10T22:09:16.408Z",
-          workout_id: 874,
-          workout_name: 'Forward Lunge',
-          happy: 5,
-          sad: 5,
-          energetic: 7,
-          lethargic: 2,
-          entry: 'crushed it!',
-          id: 1
-      }
-  ]
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
 
-  it("has a button that says submit", () => {
-    const renderlogs = shallow(<AddLog logs={logs}/>);
-    const renderText = renderlogs.find("button");
-    expect(renderText.text()).toEqual("Submit");
+describe("When Add Log page renders", () => {
+  let wrapper;
+  const createLog = jest.fn();
+
+  beforeEach(() => {
+      wrapper = mount(<AddLog currentUserId={1} createLog={createLog} />)
   });
+
+  afterEach(() => {
+      jest.clearAllMocks();
+  });
+
+  it("submits a form with mock data", () => {
+    const entryText = "entryText"
+    const workoutText = "workoutText"
+
+    const submitButton = wrapper.find("button");
+    const sadRadioButton = wrapper.find("[data-test-id='sad']")
+    const happyRadioButton = wrapper.find("[data-test-id='happy']")
+    const lethargicRadioButton = wrapper.find("[data-test-id='lethargic']")
+    const energeticRadioButton = wrapper.find("[data-test-id='energetic']")
+    const entryInput = wrapper.find("[data-test-id='entry']")
+    const workoutNameInput = wrapper.find("[data-test-id='workout_name']")
+
+    sadRadioButton.simulate("change", {target: {value: 1, name: "sad"}})
+    lethargicRadioButton.simulate("change", {target: {value: 4, name: "lethargic"}})
+    happyRadioButton.simulate("change", {target: {value: 5, name: "happy"}})
+    energeticRadioButton.simulate("change", {target: {value: 5, name: "energetic"}})
+    entryInput.simulate("change", {target: {value: entryText, name: "entry"}})
+    workoutNameInput.simulate("change", {target: {value: workoutText, name: "workout_name"}})
+    submitButton.simulate("click", {preventDefault: jest.fn()})
+
+    expect(createLog).toHaveBeenCalledWith({entry: entryText, workout_name: workoutText,
+      sad: 1, happy: 5, lethargic: 4, energetic: 5, workout_id: -1, user_id: 1})
+    expect(submitButton.text()).toEqual("Submit");
+  });
+
 });

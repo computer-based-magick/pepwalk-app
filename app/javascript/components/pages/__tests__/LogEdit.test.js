@@ -35,7 +35,7 @@ describe("When Log Edit page renders", () => {
       jest.clearAllMocks();
   });
 
-  it.only("submits a form with mock data", () => {
+  it("submits a form with mock data", () => {
     const entryText = "entryText"
     const workoutText = "workoutText"
 

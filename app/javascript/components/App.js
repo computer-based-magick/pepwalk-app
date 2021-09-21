@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import LogShow from "./pages/LogShow";
 import LogEdit from "./pages/LogEdit";
 import BarChart from "./pages/BarChart";
+import WorkoutList from "./pages/WorkoutList";
 
 const getRandomWorkout = (workouts) => {
   const randNum = Math.floor(Math.random() * workouts.length - 1);
@@ -180,7 +181,13 @@ function App(props) {
           <Route
             path="/workout"
             component={() => (
-              <WorkOut workout={workout} setWorkout={setWorkout} />
+              <WorkOut workout={workout}/>
+            )}
+          />
+          <Route
+            path="/workoutlist"
+            component={() => (
+              <WorkoutList/>
             )}
           />
           <Route component={NotFound} />

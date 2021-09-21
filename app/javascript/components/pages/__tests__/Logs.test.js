@@ -19,27 +19,10 @@ describe("When Logs page renders", () => {
           id: 1
       }
   ]
-  it("displays an h1 tag", () => {
+  it("displays a div tag", () => {
     const renderlogs = shallow(<Logs logs={logs}/>);
-    const renderText = renderlogs.find("h1");
-    expect(renderText.length).toEqual(1);
+    const renderDiv = renderlogs.find("div");
+    expect(renderDiv.length).toEqual(1);
   });
 
-  it("displays 3 p tags", () => {
-    const renderlogs = shallow(<Logs logs={logs}/>);
-    const renderText = renderlogs.find("p");
-    expect(renderText.length).toEqual(3);
-  });
-
-  it("has a button that says more info", () => {
-    const renderlogs = shallow(<Logs logs={logs}/>);
-    const renderText = renderlogs.find("button");
-    expect(renderText.text()).toEqual("More Info");
-  });
-
-  it("has a Link element that links to the log show page", () => {
-    const renderlogs = shallow(<Logs logs={logs}/>);
-    const renderLink = renderlogs.find("Link");
-    expect(renderLink.props().to).toEqual(`log/${logs[0].id}`)
-  })
 });

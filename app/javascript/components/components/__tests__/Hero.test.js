@@ -8,8 +8,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe("When hero renders", () => {
   it("Hero displays app name in an h1 tag", () => {
     const renderHero = shallow(<Hero />);
-    const renderText = renderHero.find("h1");
-    expect(renderText.length).toEqual(1);
+    const renderTags = renderHero.find("h1");
+    expect(renderTags.length).toEqual(2);
   });
   it("has a link that says Add A Log", () => {
     const renderHero = shallow(<Hero />);

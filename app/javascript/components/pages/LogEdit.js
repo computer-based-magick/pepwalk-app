@@ -47,7 +47,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
               </label>
             </div>
 
-            <div className="flex mb-5 relative " onChange={handleChange}>
+            <div className="flex mb-5 relative " onChange={handleChange} data-test-id="sad">
               <div className=" my-auto px-3  ">Are you sad?</div>
 
               <label className="flex radio p-5 cursor-pointer">
@@ -104,7 +104,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
               </label>
             </div>
 
-            <div className="flex mb-5 relative " onChange={handleChange}>
+            <div className="flex mb-5 relative " onChange={handleChange}  data-test-id="happy">
               <div className=" my-auto px-3  ">Are you happy?</div>
 
               <label className="flex radio p-5 cursor-pointer">
@@ -161,7 +161,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
               </label>
             </div>
 
-            <div className="flex mb-5 relative " onChange={handleChange}>
+            <div className="flex mb-5 relative " onChange={handleChange} data-test-id="energetic">
               <div className="my-auto px-3  ">Do you feel energetic?</div>
 
               <label className="flex radio p-5 cursor-pointer">
@@ -218,7 +218,7 @@ const LogEdit = ({ oldLog, updateLog }) => {
               </label>
             </div>
 
-            <div className="flex mb-5 relative " onChange={handleChange}>
+            <div className="flex mb-5 relative " onChange={handleChange} data-test-id="lethargic">
               <div className="my-auto px-3  ">Do you feel lethargic?</div>
 
               <label className="flex radio p-5 cursor-pointer">
@@ -275,11 +275,13 @@ const LogEdit = ({ oldLog, updateLog }) => {
               </label>
             </div>
 
-            <div className="mb-5 relative" onChange={handleChange}>
+            <div className="mb-5 relative">
               <input
                 value={log.workout_name}
+                data-test-id="workout_name"
                 name="workout_name"
                 type="text"
+                onChange={handleChange}
                 className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 "
               />
               <label
@@ -292,9 +294,11 @@ const LogEdit = ({ oldLog, updateLog }) => {
 
             <div className="mb-5 relative" onChange={handleChange}>
               <input
+                data-test-id="entry"
                 value={log.entry}
                 type="text"
                 name="entry"
+                onChange={handleChange}
                 className="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16"
               />
               <label

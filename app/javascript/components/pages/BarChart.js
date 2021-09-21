@@ -34,17 +34,7 @@ const BarChart = ({ logs }) => {
                       "rgba(75, 192, 192, 1)",
                     ],
                     borderWidth: 1,
-                  },
-                  // {
-                  //   label: "week",
-                  //   data: [8, 12, 5, 14],
-                  //   backgroundColor: [
-                  //     "rgba(75, 192, 192, 0.5)",
-                  //     "rgba(255, 206, 86, 0.5)",
-                  //     "rgba(54, 162, 235, 0.5)",
-                  //     "rgba(255, 99, 132, 0.5)",
-                  //   ],
-                  // },
+                  }
                 ],
               }}
               height={100}
@@ -52,13 +42,11 @@ const BarChart = ({ logs }) => {
               options={{
                 mainAspectRatio: false,
                 scales: {
-                  yAxis: [
+                  y: 
                     {
-                      ticks: {
                         beginAtZero: true,
-                      },
-                    },
-                  ],
+                        max: 5
+                    }
                 },
               }}
             />

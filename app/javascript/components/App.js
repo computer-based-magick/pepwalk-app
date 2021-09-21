@@ -23,7 +23,6 @@ function App(props) {
   const [workout, setWorkout] = useState({});
   const [logs, setLogs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [workoutResults, setWorkoutResults] = useState([]);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -120,7 +119,6 @@ function App(props) {
       .then((response) => response.json())
       .then((workouts) => {
         setWorkout(getRandomWorkout(workouts.results));
-        setWorkoutResults(workouts.results);
       })
       .catch((errors) => console.log(errors));
   }, []);
@@ -181,11 +179,14 @@ function App(props) {
           <Route
             path="/workout"
             component={() => (
-              <WorkOut workout={workout} setWorkout={setWorkout} />
+              <WorkOut workout={workout}/>
             )}
           />
-          <Route path="/workoutlist" component={() => (<WorkoutList workoutResults={workoutResults} />
-          )}
+          <Route
+            path="/workoutlist"
+            component={() => (
+              <WorkoutList/>
+            )}
           />
           <Route component={NotFound} />
         </Switch>

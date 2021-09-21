@@ -38,7 +38,7 @@ const Hero = () => {
 
       <Link
         className="py-6 px-10  bg-white rounded-full text-3xl hover:bg-blue-300 transition duration-300 ease-in-out flex items-center animate-bounce text-black font-extralight "
-        to="/workout"
+        to="/workoutlist"
       >
         Get A Workout
         <svg
